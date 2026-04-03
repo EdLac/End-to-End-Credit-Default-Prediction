@@ -1,21 +1,38 @@
 import pandas as pd
 import numpy as np
-import os
 
-print("--- Lancement du script de preprocessing ---")
+print("--- Starting preprocessing script ---")
 
-# Définition du chemin vers les données
+# Data loading
 data_path = "data/raw/Loan_Data.csv" 
+df = pd.read_csv(data_path)
 
-if os.path.exists(data_path):
-    print("Le fichier de données a bien été trouvé.")
+# Record initial size for Before/After comparison
+initial_size = df.shape[0]
+print(f"Initial dataset size: {initial_size} rows.")
 
-    # Chargement des données
-    df = pd.read_csv(data_path)
-    print(f"Taille du dataset : {df.shape[0]} lignes et {df.shape[1]} colonnes.")
-    
-    # Afficher les 5 premières lignes
-    print("\nVoici les premières lignes :")
-    print(df.head())
-else:
-    print(f"Erreur : Impossible de trouver le fichier à ce chemin : {data_path}")
+# ==========================================
+# 1. DATA CLEANING
+# ==========================================
+# Initial data cleaning ensures consistency and avoids noise in model training
+df = df.drop_duplicates()
+
+# ==========================================
+# 2. MISSING VALUES HANDLING
+# ==========================================
+# Missing values are handled to prevent bias and data loss
+
+# Median imputation for interest rate
+if 'loan_int_rate' in df.columns:
+    df['loan_int_rate'] = df['loan_int_rate'].fillna(df['loan_int_rate'].median())
+
+# Drop remaining NaNs
+df = df.dropna()
+
+# Calculate final size and difference
+final_size = df.shape[0]
+dropped_rows = initial_size - final_size
+
+
+print(f"Size after cleaning: {final_size} rows.")
+print(f"Total rows dropped (duplicates + NaNs): {dropped_rows} rows.")
