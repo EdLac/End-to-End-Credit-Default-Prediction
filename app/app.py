@@ -1,9 +1,11 @@
-import os
-import pickle
 from datetime import datetime
-
-import numpy as np
 import streamlit as st
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.inference import predict_default_risk
 
 # =============================================================================
 # CONFIG
@@ -307,19 +309,6 @@ h4 {
 """, unsafe_allow_html=True)
 
 # =============================================================================
-# MODEL
-# =============================================================================
-@st.cache_resource
-def load_model():
-    model_path = "models/model.pkl"
-    if os.path.exists(model_path):
-        with open(model_path, "rb") as f:
-            return pickle.load(f)
-    return None
-
-model = load_model()
-
-# =============================================================================
 # HELPERS
 # =============================================================================
 def go_to_home():
@@ -489,7 +478,7 @@ def render_home():
 
     with right:
         model_name = "Selected credit risk model"
-        model_status = "Production-ready scoring engine" if model is not None else "Decision engine available"
+        model_status = "Production-ready scoring engine"
 
         st.markdown(f"""
         <div class="card">
@@ -651,18 +640,28 @@ def render_analysis():
             credit_lines = st.session_state.credit_lines
 
             dti_pct = round(total_debt / max(income, 1) * 100, 1)
-            features = np.array([[credit_lines, loan_amt, total_debt, income, years_employed, fico_score]])
 
-            if model is not None:
-                proba = float(model.predict_proba(features)[0][1])
-            else:
-                fn = (850 - fico_score) / (850 - 408)
-                dti_r = min(total_debt / max(income, 1), 1.2) / 1.2
-                lti = min(loan_amt / max(income, 1), 0.5) / 0.5
-                proba = float(np.clip(
-                    fn * 0.40 + dti_r * 0.28 + lti * 0.15 + (credit_lines / 5) * 0.10 + (1 - years_employed / 10) * 0.07,
-                    0.02, 0.97
-                ))
+            input_data = {
+                "credit_lines_outstanding": credit_lines,
+                "loan_amt_outstanding": loan_amt,
+                "total_debt_outstanding": total_debt,
+                "income": income,
+                "years_employed": years_employed,
+                "fico_score": fico_score
+            }
+
+            result = predict_default_risk(input_data)
+            proba = result["default_probability"]
+
+            st.markdown(
+                f"""
+                <div style="font-size:12px; color:#0F172A; margin-bottom:10px;">
+                    Raw probability: {proba:.6f} <br>
+                    Prediction: {result["prediction"]}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
             pct = round(proba * 100, 1)
 
