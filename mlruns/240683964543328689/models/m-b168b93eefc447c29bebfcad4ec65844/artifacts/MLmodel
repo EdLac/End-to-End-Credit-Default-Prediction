@@ -1,0 +1,22 @@
+artifact_path: file:///Users/edouardlacroix/Desktop/DU_Data_Analytics/cours/MLOps/Projet/End-to-End-Credit-Default-Prediction/mlruns/240683964543328689/models/m-b168b93eefc447c29bebfcad4ec65844/artifacts
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.9.6
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 2.1.4
+mlflow_version: 3.1.4
+model_id: m-b168b93eefc447c29bebfcad4ec65844
+model_size_bytes: 1112521
+model_uuid: m-b168b93eefc447c29bebfcad4ec65844
+prompts: null
+run_id: 52b613c41e214bf59e2cb95e591969f5
+utc_time_created: '2026-04-05 14:09:42.908570'

@@ -1,0 +1,10 @@
+artifact_location: file:///Users/edouardlacroix/Desktop/DU_Data_Analytics/cours/MLOps/Projet/End-to-End-Credit-Default-Prediction/mlruns/240683964543328689/models/m-b168b93eefc447c29bebfcad4ec65844/artifacts
+creation_timestamp: 1775398182900
+experiment_id: '240683964543328689'
+last_updated_timestamp: 1775398184139
+model_id: m-b168b93eefc447c29bebfcad4ec65844
+model_type: null
+name: model
+source_run_id: 52b613c41e214bf59e2cb95e591969f5
+status: 2
+status_message: null

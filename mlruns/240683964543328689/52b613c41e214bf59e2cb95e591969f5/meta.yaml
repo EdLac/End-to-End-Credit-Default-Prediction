@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/edouardlacroix/Desktop/DU_Data_Analytics/cours/MLOps/Projet/End-to-End-Credit-Default-Prediction/mlruns/240683964543328689/52b613c41e214bf59e2cb95e591969f5/artifacts
+end_time: 1775398184140
+entry_point_name: ''
+experiment_id: '240683964543328689'
+lifecycle_stage: active
+run_id: 52b613c41e214bf59e2cb95e591969f5
+run_name: XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775398182315
+status: 3
+tags: []
+user_id: edouardlacroix
