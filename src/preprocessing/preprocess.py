@@ -18,7 +18,7 @@ if os.path.exists(data_path):
     # 1. DATA CLEANING & MISSING VALUES
     # ==========================================
     # Initial data cleaning ensures consistency and avoids noise in model training
-    df = df.drop_duplicates()
+    df = df.drop_duplicates(subset=["customer_id"])
     
     # Missing values are handled to prevent bias and data loss
     if 'loan_int_rate' in df.columns:
