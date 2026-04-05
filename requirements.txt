@@ -7,3 +7,5 @@ seaborn==0.13.2
 joblib==1.5.3
 ipykernel==6.31.0
 streamlit
+xgboost
+mlflow
