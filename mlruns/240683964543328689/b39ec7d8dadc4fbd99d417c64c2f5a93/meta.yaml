@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/edouardlacroix/Desktop/DU_Data_Analytics/cours/MLOps/Projet/End-to-End-Credit-Default-Prediction/mlruns/240683964543328689/b39ec7d8dadc4fbd99d417c64c2f5a93/artifacts
+end_time: 1775398181034
+entry_point_name: ''
+experiment_id: '240683964543328689'
+lifecycle_stage: active
+run_id: b39ec7d8dadc4fbd99d417c64c2f5a93
+run_name: LogisticRegression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775398179266
+status: 3
+tags: []
+user_id: edouardlacroix
