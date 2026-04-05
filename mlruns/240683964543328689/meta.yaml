@@ -1,6 +1,0 @@
-artifact_location: file:///Users/edouardlacroix/Desktop/DU_Data_Analytics/cours/MLOps/Projet/End-to-End-Credit-Default-Prediction/mlruns/240683964543328689
-creation_time: 1775398178991
-experiment_id: '240683964543328689'
-last_update_time: 1775398178991
-lifecycle_stage: active
-name: credit_default_models
