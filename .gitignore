@@ -3,5 +3,6 @@ credit_default_env/
 mlruns/
 __pycache__/
 *.pyc
+*.pyo
 models_backup/
 app_backup.py
